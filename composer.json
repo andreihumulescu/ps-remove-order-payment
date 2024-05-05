@@ -6,9 +6,9 @@
             "HMedia\\RemoveOrderPayment\\": "src/"
         }
     },
-	"config": {
+    "config": {
         "prepend-autoloader": false
-      },
+    },
     "authors": [
         {
             "name": "Andrei Humulescu"
