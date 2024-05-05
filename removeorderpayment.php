@@ -31,8 +31,6 @@ class RemoveOrderPayment extends Module
 
     public function __construct()
     {
-        // die('a');
-
         $this->name = 'removeorderpayment';
         $this->tab = 'administration';
         $this->version = '1.0.0';
