@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    public: true
+
+  hmedia.order_payment.repository:
+    class: HMedia\RemoveOrderPayment\Entity\Repository\OrderPaymentRepository
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - '%database_prefix%'
+
+  HMedia\RemoveOrderPayment\Controllers\Admin\RemovePaymentController:
+    arguments:
+      - '@hmedia.order_payment.repository'
+    

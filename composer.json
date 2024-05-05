@@ -1,0 +1,15 @@
+{
+    "name": "hmedia/removeorderpayment",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "HMedia\\RemoveOrderPayment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrei Humulescu"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>removeorderpayment</name>
+    <displayName><![CDATA[Remove Order Payment]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[PrestaShop module that enables removing order payments.]]></description>
+    <author><![CDATA[Andrei H]]></author>
+    <tab><![CDATA[administration]]></tab>
+	<confirmUninstall><![CDATA[Are you sure you want to uninstall?]]></confirmUninstall>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+</module>
