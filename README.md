@@ -1,4 +1,4 @@
-# PrestaShop remove order payment
+# PrestaShop Remove Order Payment
 
 ## Description
 PrestaShop module that enables removing order payments \
