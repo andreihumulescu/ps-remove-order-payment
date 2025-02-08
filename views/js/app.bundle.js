@@ -226,7 +226,7 @@ exports.addListeners = addListeners;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
 var exports = {};
 var __webpack_unused_export__;
@@ -247,7 +247,7 @@ function init() {
 
 })();
 
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
 // extracted by mini-css-extract-plugin
 

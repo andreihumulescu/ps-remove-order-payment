@@ -53,10 +53,10 @@ class RemovePaymentController extends FrameworkBundleAdminController
     {
         try {
             $content = json_decode($request->getContent(), true);
-            if (empty($content['transaction_id']) || empty($content['order_reference'])) {
+            if (empty($content['date_add']) || empty($content['order_reference'])) {
                 $data = [
                     'success' => false,
-                    'message' => $this->trans('Please provide a Transaction ID and/or an Order Reference', 'Modules.Removeorderpayment.Admin'),
+                    'message' => $this->trans('Please provide a Date and/or an Order Reference', 'Modules.Removeorderpayment.Admin'),
                 ];
 
                 return $this->json($data, Response::HTTP_BAD_REQUEST);
