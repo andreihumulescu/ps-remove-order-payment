@@ -75,7 +75,7 @@ class RemovePaymentController extends FrameworkBundleAdminController
             return $this->json($data);
         } catch (\Exception $e) {
             return $this->json(
-                ['success' => false, 'message' => $this->getErrorMessageForException($e, $this->getErrorMessages($e))],
+                ['success' => false, 'message' => $e->getMessage()],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
