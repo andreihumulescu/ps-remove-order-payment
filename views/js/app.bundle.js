@@ -20,7 +20,7 @@ function getPaymentTableData(buttonParent) {
     return {
         date_add: date,
         transaction_id: transactionId,
-        amount: Number.parseFloat(amount === null || amount === void 0 ? void 0 : amount.replace(/[^\d\.]*/g, "")),
+        amount: Number.parseFloat(amount === null || amount === void 0 ? void 0 : amount.replace(/[^\d\.]*/g, '')),
     };
 }
 exports.getPaymentTableData = getPaymentTableData;
@@ -29,86 +29,6 @@ exports.getPaymentTableData = getPaymentTableData;
 /***/ }),
 
 /***/ 8:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getRemovePaymentButtons = exports.displayRemovePaymentButtons = void 0;
-var create_element_1 = __importDefault(__webpack_require__(745));
-var payment_table_1 = __webpack_require__(452);
-var remove_button_1 = __webpack_require__(603);
-function displayRemovePaymentButtons() {
-    if ((0, payment_table_1.getPaymentTable)().length === 0) {
-        return;
-    }
-    (0, payment_table_1.getPaymentTable)().forEach(function (row) {
-        var removeButton = (0, create_element_1.default)("button", {
-            className: "btn btn-sm btn-outline-secondary btn-remove-payment",
-            text: "Remove",
-        });
-        row.append(removeButton);
-    });
-    (0, remove_button_1.addListeners)();
-}
-exports.displayRemovePaymentButtons = displayRemovePaymentButtons;
-function getRemovePaymentButtons() {
-    return document.querySelectorAll(".btn-remove-payment");
-}
-exports.getRemovePaymentButtons = getRemovePaymentButtons;
-
-
-/***/ }),
-
-/***/ 834:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getOrderReference = void 0;
-function getOrderReference() {
-    return document.querySelector('strong[data-role="order-reference"]')
-        .textContent;
-}
-exports.getOrderReference = getOrderReference;
-
-
-/***/ }),
-
-/***/ 745:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-function createElement(elementType, props) {
-    var el = document.createElement(elementType);
-    var className = props.className, text = props.text, innerHtml = props.innerHtml, attributes = props.attributes;
-    if (className) {
-        el.className = className;
-    }
-    if (text) {
-        el.textContent = text;
-    }
-    if (innerHtml) {
-        el.innerHTML = innerHtml;
-    }
-    if (attributes) {
-        attributes.forEach(function (attr) {
-            var name = Object.keys(attr)[0];
-            var value = Object.values(attr)[0];
-            el.setAttribute(name, value);
-        });
-    }
-    return el;
-}
-exports["default"] = createElement;
-
-
-/***/ }),
-
-/***/ 603:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -159,14 +79,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.addListeners = void 0;
-var remove_button_1 = __webpack_require__(8);
+exports.displayRemovePaymentButtons = void 0;
+var create_element_1 = __importDefault(__webpack_require__(745));
 var payment_table_1 = __webpack_require__(452);
+var payment_table_2 = __webpack_require__(452);
 var utils_1 = __webpack_require__(834);
-function addListeners() {
-    (0, remove_button_1.getRemovePaymentButtons)().forEach(function (button) {
-        button.addEventListener("click", function () {
+function displayRemovePaymentButtons() {
+    if ((0, payment_table_1.getPaymentTable)().length === 0) {
+        return;
+    }
+    (0, payment_table_1.getPaymentTable)().forEach(function (row) {
+        var removeButton = (0, create_element_1.default)('button', {
+            className: 'btn btn-sm btn-outline-secondary btn-remove-payment',
+            text: 'Remove',
+        });
+        removeButton.addEventListener('click', function () {
             return __awaiter(this, void 0, void 0, function () {
                 var response, result;
                 return __generator(this, function (_a) {
@@ -174,8 +105,8 @@ function addListeners() {
                         case 0:
                             if (!confirm(window.removeorderpayment.removePaymentText)) return [3 /*break*/, 3];
                             return [4 /*yield*/, fetch(window.removeorderpayment.removePaymentController, {
-                                    method: "DELETE",
-                                    body: JSON.stringify(__assign({ order_reference: (0, utils_1.getOrderReference)() }, (0, payment_table_1.getPaymentTableData)(this.parentElement.parentElement))),
+                                    method: 'DELETE',
+                                    body: JSON.stringify(__assign({ order_reference: (0, utils_1.getOrderReference)() }, (0, payment_table_2.getPaymentTableData)(this.parentElement.parentElement))),
                                 })];
                         case 1:
                             response = _a.sent();
@@ -192,9 +123,56 @@ function addListeners() {
                 });
             });
         });
+        row.append(removeButton);
     });
 }
-exports.addListeners = addListeners;
+exports.displayRemovePaymentButtons = displayRemovePaymentButtons;
+
+
+/***/ }),
+
+/***/ 834:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getOrderReference = void 0;
+function getOrderReference() {
+    return document.querySelector('strong[data-role="order-reference"]')
+        .textContent;
+}
+exports.getOrderReference = getOrderReference;
+
+
+/***/ }),
+
+/***/ 745:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+function createElement(elementType, props) {
+    var el = document.createElement(elementType);
+    var className = props.className, text = props.text, innerHtml = props.innerHtml, attributes = props.attributes;
+    if (className) {
+        el.className = className;
+    }
+    if (text) {
+        el.textContent = text;
+    }
+    if (innerHtml) {
+        el.innerHTML = innerHtml;
+    }
+    if (attributes) {
+        attributes.forEach(function (attr) {
+            var name = Object.keys(attr)[0];
+            var value = Object.values(attr)[0];
+            el.setAttribute(name, value);
+        });
+    }
+    return el;
+}
+exports["default"] = createElement;
 
 
 /***/ })

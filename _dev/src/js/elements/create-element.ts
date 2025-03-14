@@ -1,4 +1,4 @@
-import { Props } from "../types/create-element";
+import { Props } from '../types/create-element';
 
 function createElement(elementType: string, props?: Props) {
   const el = document.createElement(elementType);
