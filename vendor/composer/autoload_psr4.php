@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'HMedia\\RemoveOrderPayment\\' => array($baseDir . '/src'),
+    'PrestaShop\\Module\\RemoveOrderPayment\\' => array($baseDir . '/src'),
 );

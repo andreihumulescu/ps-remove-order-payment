@@ -29,11 +29,14 @@ class RemoveOrderPayment extends Module
         'actionAdminControllerSetMedia',
     ];
 
+    /**
+     * RemoveOrderPayment constructor.
+     */
     public function __construct()
     {
         $this->name = 'removeorderpayment';
         $this->tab = 'administration';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->author = 'Andrei H';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
@@ -50,6 +53,9 @@ class RemoveOrderPayment extends Module
         $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Removeorderpayment.Admin');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function install()
     {
         if (Shop::isFeatureActive()) {
@@ -60,16 +66,17 @@ class RemoveOrderPayment extends Module
             && $this->registerHook(self::HOOKS);
     }
 
-    public function uninstall()
-    {
-        return parent::uninstall();
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function isUsingNewTranslationSystem()
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function hookActionAdminControllerSetMedia()
     {
         if (!Tools::getIsset('controller') || Tools::getValue('controller') !== 'AdminOrders') {
@@ -86,8 +93,17 @@ class RemoveOrderPayment extends Module
         $this->context->controller->addJs($this->_path . 'views/js/app.bundle.js');
     }
 
+    /**
+     * Get the URL for the remove payment endpoint.
+     *
+     * @return string|null
+     */
     private function getRemovePaymentEndpoint()
     {
-        return SymfonyContainer::getInstance()->get('router')->generate('hmedia_remove_order_payment');
+        try {
+            return SymfonyContainer::getInstance()->get('router')->generate('remove_order_payment');
+        } catch (Exception $e) {
+            return null;
+        }
     }
 }

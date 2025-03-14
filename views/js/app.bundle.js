@@ -20,7 +20,7 @@ function getPaymentTableData(buttonParent) {
     return {
         date_add: date,
         transaction_id: transactionId,
-        amount: Number.parseFloat(amount === null || amount === void 0 ? void 0 : amount.replace(/[^\d\.]*/g, ''))
+        amount: Number.parseFloat(amount === null || amount === void 0 ? void 0 : amount.replace(/[^\d\.]*/g, "")),
     };
 }
 exports.getPaymentTableData = getPaymentTableData;
@@ -45,9 +45,9 @@ function displayRemovePaymentButtons() {
         return;
     }
     (0, payment_table_1.getPaymentTable)().forEach(function (row) {
-        var removeButton = (0, create_element_1.default)('button', {
-            className: 'btn btn-sm btn-outline-secondary btn-remove-payment',
-            text: 'Remove'
+        var removeButton = (0, create_element_1.default)("button", {
+            className: "btn btn-sm btn-outline-secondary btn-remove-payment",
+            text: "Remove",
         });
         row.append(removeButton);
     });
@@ -55,7 +55,7 @@ function displayRemovePaymentButtons() {
 }
 exports.displayRemovePaymentButtons = displayRemovePaymentButtons;
 function getRemovePaymentButtons() {
-    return document.querySelectorAll('.btn-remove-payment');
+    return document.querySelectorAll(".btn-remove-payment");
 }
 exports.getRemovePaymentButtons = getRemovePaymentButtons;
 
@@ -69,7 +69,8 @@ exports.getRemovePaymentButtons = getRemovePaymentButtons;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOrderReference = void 0;
 function getOrderReference() {
-    return document.querySelector('strong[data-role="order-reference"]').textContent;
+    return document.querySelector('strong[data-role="order-reference"]')
+        .textContent;
 }
 exports.getOrderReference = getOrderReference;
 
@@ -165,7 +166,7 @@ var payment_table_1 = __webpack_require__(452);
 var utils_1 = __webpack_require__(834);
 function addListeners() {
     (0, remove_button_1.getRemovePaymentButtons)().forEach(function (button) {
-        button.addEventListener('click', function () {
+        button.addEventListener("click", function () {
             return __awaiter(this, void 0, void 0, function () {
                 var response, result;
                 return __generator(this, function (_a) {
@@ -173,8 +174,8 @@ function addListeners() {
                         case 0:
                             if (!confirm(window.removeorderpayment.removePaymentText)) return [3 /*break*/, 3];
                             return [4 /*yield*/, fetch(window.removeorderpayment.removePaymentController, {
-                                    method: 'DELETE',
-                                    body: JSON.stringify(__assign({ order_reference: (0, utils_1.getOrderReference)() }, (0, payment_table_1.getPaymentTableData)(this.parentElement.parentElement)))
+                                    method: "DELETE",
+                                    body: JSON.stringify(__assign({ order_reference: (0, utils_1.getOrderReference)() }, (0, payment_table_1.getPaymentTableData)(this.parentElement.parentElement))),
                                 })];
                         case 1:
                             response = _a.sent();
@@ -234,11 +235,11 @@ var __webpack_unused_export__;
 __webpack_unused_export__ = ({ value: true });
 var remove_button_1 = __webpack_require__(8);
 (function ready(fn) {
-    if (document.readyState !== 'loading') {
+    if (document.readyState !== "loading") {
         fn();
     }
     else {
-        document.addEventListener('DOMContentLoaded', fn);
+        document.addEventListener("DOMContentLoaded", fn);
     }
 })(init);
 function init() {

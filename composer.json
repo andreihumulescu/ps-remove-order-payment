@@ -1,18 +1,18 @@
 {
-    "name": "hmedia/removeorderpayment",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "HMedia\\RemoveOrderPayment\\": "src/"
-        }
-    },
-    "config": {
-        "prepend-autoloader": false
-    },
-    "authors": [
-        {
-            "name": "Andrei Humulescu"
-        }
-    ],
-    "require": {}
+  "name": "andreih/removeorderpayment",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "PrestaShop\\Module\\RemoveOrderPayment\\": "src/"
+    }
+  },
+  "config": {
+    "prepend-autoloader": false
+  },
+  "authors": [
+    {
+      "name": "Andrei Humulescu"
+    }
+  ],
+  "require": {}
 }

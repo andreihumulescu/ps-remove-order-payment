@@ -1,8 +1,7 @@
-hmedia_remove_order_payment:
+remove_order_payment:
   path: removeorderpayment/delete
-  methods: [ DELETE ]
+  methods: [DELETE]
   defaults:
-    _controller: 'HMedia\RemoveOrderPayment\Controllers\Admin\RemovePaymentController::deleteAction'
-    _legacy_controller: HMediaRemoveOrderPayment
-    _legacy_link: HMediaRemoveOrderPayment
-
+    _controller: 'PrestaShop\Module\RemoveOrderPayment\Controller\Admin\RemovePaymentController::deleteAction'
+    _legacy_controller: RemoveOrderPayment
+    _legacy_link: RemoveOrderPayment
