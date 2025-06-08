@@ -12,9 +12,9 @@
  * @license   MIT
  */
 
-namespace HMedia\RemoveOrderPayment\Controllers\Admin;
+namespace PrestaShop\Module\RemoveOrderPayment\Controller\Admin;
 
-use HMedia\RemoveOrderPayment\Entity\Repository\OrderPaymentRepository;
+use PrestaShop\Module\RemoveOrderPayment\Entity\Repository\OrderPaymentRepository;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use PrestaShopBundle\Security\Annotation\AdminSecurity;
 use Symfony\Component\HttpFoundation\JsonResponse;
