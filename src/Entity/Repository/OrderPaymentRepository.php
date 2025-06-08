@@ -12,7 +12,7 @@
  * @license   MIT
  */
 
-namespace HMedia\RemoveOrderPayment\Entity\Repository;
+namespace PrestaShop\Module\RemoveOrderPayment\Entity\Repository;
 
 use Doctrine\DBAL\Connection;
 

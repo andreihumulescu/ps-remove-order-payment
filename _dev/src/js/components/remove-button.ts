@@ -1,31 +1,42 @@
-import createElement from "../elements/create-element";
-import { getPaymentTable } from "./payment-table";
-import { addListeners } from "../listeners/remove-button";
+import createElement from '../elements/create-element';
+import { getPaymentTable } from './payment-table';
+import { getPaymentTableData } from '../components/payment-table';
+import { getOrderReference } from '../components/utils';
 
 function displayRemovePaymentButtons() {
-    if (getPaymentTable().length === 0) {
-        return;
-    }
+  if (getPaymentTable().length === 0) {
+    return;
+  }
 
-    getPaymentTable().forEach((row) => {
-        const removeButton = createElement(
-            'button',
-            {
-                className: 'btn btn-sm btn-outline-secondary btn-remove-payment',
-                text: 'Remove'
-            }
-        );
-        row.append(removeButton);  
+  getPaymentTable().forEach((row) => {
+    const removeButton = createElement('button', {
+      className: 'btn btn-sm btn-outline-secondary btn-remove-payment',
+      text: 'Remove',
     });
 
-    addListeners();
+    removeButton.addEventListener('click', async function () {
+      if (confirm(window.removeorderpayment.removePaymentText)) {
+        const response = await fetch(
+          window.removeorderpayment.removePaymentController,
+          {
+            method: 'DELETE',
+            body: JSON.stringify({
+              order_reference: getOrderReference(),
+              ...getPaymentTableData(this.parentElement.parentElement),
+            }),
+          },
+        );
+        const result = await response.json();
+        window.alert(result.message);
+
+        if (result.success) {
+          window.location.reload();
+        }
+      }
+    });
+
+    row.append(removeButton);
+  });
 }
 
-function getRemovePaymentButtons() {
-    return document.querySelectorAll('.btn-remove-payment');
-}
-
-export {
-    displayRemovePaymentButtons,
-    getRemovePaymentButtons,
-}
+export { displayRemovePaymentButtons };

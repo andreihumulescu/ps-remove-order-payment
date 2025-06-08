@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'name' => 'andreih/removeorderpayment',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '0c0542620ba2363c6bd0345e1f8e9ebe045ed575',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
-        'name' => 'hmedia/removeorderpayment',
         'dev' => true,
     ),
     'versions' => array(
-        'hmedia/removeorderpayment' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+        'andreih/removeorderpayment' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '0c0542620ba2363c6bd0345e1f8e9ebe045ed575',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
             'dev_requirement' => false,
         ),
     ),
