@@ -33,11 +33,6 @@ class OrderPaymentRepository
     private $orderPaymentTable;
 
     /**
-     * @var array
-     */
-    private $allowedValues;
-
-    /**
      * @param Connection $connection
      * @param string $tablePrefix
      */
@@ -69,7 +64,7 @@ class OrderPaymentRepository
      */
     private function getAllowedValues(array $orderPaymentData)
     {
-        $allowedKeys = ['amount', 'date_add', 'order_reference', 'transaction_id'];
+        $allowedKeys = ['date_add', 'order_reference', 'transaction_id'];
 
         return array_intersect_key($orderPaymentData, array_flip($allowedKeys));
     }

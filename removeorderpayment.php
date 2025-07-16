@@ -36,7 +36,7 @@ class RemoveOrderPayment extends Module
     {
         $this->name = 'removeorderpayment';
         $this->tab = 'administration';
-        $this->version = '1.0.2';
+        $this->version = '1.0.3';
         $this->author = 'Andrei H';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
@@ -90,7 +90,7 @@ class RemoveOrderPayment extends Module
             ],
         ]);
 
-        $this->context->controller->addJs($this->_path . 'views/js/app.bundle.js');
+        $this->context->controller->addJs($this->_path . 'views/js/main.js');
     }
 
     /**
