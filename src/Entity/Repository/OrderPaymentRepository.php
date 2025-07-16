@@ -33,11 +33,6 @@ class OrderPaymentRepository
     private $orderPaymentTable;
 
     /**
-     * @var array
-     */
-    private $allowedValues;
-
-    /**
      * @param Connection $connection
      * @param string $tablePrefix
      */
