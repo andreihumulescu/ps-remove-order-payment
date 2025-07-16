@@ -2,7 +2,7 @@
 <module>
     <name>removeorderpayment</name>
     <displayName><![CDATA[Remove Order Payment]]></displayName>
-    <version><![CDATA[1.0.2]]></version>
+    <version><![CDATA[1.0.3]]></version>
     <description><![CDATA[PrestaShop module that enables removing order payments.]]></description>
     <author><![CDATA[Andrei H]]></author>
     <tab><![CDATA[administration]]></tab>
