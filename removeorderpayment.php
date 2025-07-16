@@ -90,7 +90,7 @@ class RemoveOrderPayment extends Module
             ],
         ]);
 
-        $this->context->controller->addJs($this->_path . 'views/js/app.bundle.js');
+        $this->context->controller->addJs($this->_path . 'views/js/main.js');
     }
 
     /**

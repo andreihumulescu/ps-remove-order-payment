@@ -22,9 +22,9 @@ function displayRemovePaymentButtons() {
             method: 'DELETE',
             body: JSON.stringify({
               order_reference: getOrderReference(),
-              ...getPaymentTableData(this.parentElement.parentElement),
+              ...getPaymentTableData(this?.parentElement?.parentElement),
             }),
-          },
+          }
         );
         const result = await response.json();
         window.alert(result.message);
