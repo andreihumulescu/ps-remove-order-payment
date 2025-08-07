@@ -65,11 +65,17 @@ class RemovePaymentController extends FrameworkBundleAdminController
             $dateAdd = new \DateTime($content['date_add']);
             $content['date_add'] = $dateAdd->format('Y-m-d H:i:s');
 
-            $this->orderPaymentRepository->delete($content);
+            $result = $this->orderPaymentRepository->delete($content);
 
             $data = [
                 'success' => true,
                 'message' => $this->trans('Order Payment successfully deleted', 'Modules.Removeorderpayment.Admin'),
+                'debug' => [
+                    'date_add' => $content['date_add'],
+                    'deleted_rows' => $result['deleted_rows'],
+                    'order_reference' => $content['order_reference'],
+                    'table' => $result['table'],
+                ],
             ];
 
             return $this->json($data);

@@ -50,11 +50,15 @@ class OrderPaymentRepository
     public function delete(array $orderPaymentData)
     {
         $orderPaymentData = $this->getAllowedValues($orderPaymentData);
-
-        $this->connection->delete(
+        $deletedRows = $this->connection->delete(
             $this->orderPaymentTable,
             $orderPaymentData
         );
+
+        return [
+            'deleted_rows' => $deletedRows,
+            'table' => $this->orderPaymentTable,
+        ];
     }
 
     /**

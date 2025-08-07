@@ -26,7 +26,12 @@ function displayRemovePaymentButtons() {
             }),
           }
         );
+
         const result = await response.json();
+        if (result.debug) {
+          console.log(result.debug);
+        }
+
         window.alert(result.message);
 
         if (result.success) {
