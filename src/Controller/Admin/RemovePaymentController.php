@@ -15,6 +15,7 @@
 namespace PrestaShop\Module\RemoveOrderPayment\Controller\Admin;
 
 use PrestaShop\Module\RemoveOrderPayment\Entity\Repository\OrderPaymentRepository;
+use PrestaShop\Module\RemoveOrderPayment\Service\DateFormatService;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use PrestaShopBundle\Security\Annotation\AdminSecurity;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,10 +34,18 @@ class RemovePaymentController extends FrameworkBundleAdminController
     private $orderPaymentRepository;
 
     /**
+     * @var DateFormatService
+     */
+    private $dateFormatService;
+
+    /**
      * @param OrderPaymentRepository $orderPaymentRepository
      */
-    public function __construct(OrderPaymentRepository $orderPaymentRepository)
-    {
+    public function __construct(
+        DateFormatService $dateFormatService,
+        OrderPaymentRepository $orderPaymentRepository
+    ) {
+        $this->dateFormatService = $dateFormatService;
         $this->orderPaymentRepository = $orderPaymentRepository;
     }
 
@@ -62,8 +71,7 @@ class RemovePaymentController extends FrameworkBundleAdminController
                 return $this->json($data, Response::HTTP_BAD_REQUEST);
             }
 
-            $dateAdd = new \DateTime($content['date_add']);
-            $content['date_add'] = $dateAdd->format('Y-m-d H:i:s');
+            $content['date_add'] = $this->dateFormatService->formatDate($content['date_add']);
 
             $this->orderPaymentRepository->delete($content);
 
