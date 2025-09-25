@@ -22,29 +22,14 @@ if (!defined('_PS_VERSION_')) {
 
 class DateFormatService
 {
-    /**
-     * @var LegacyContext
-     */
-    private $legacyContext;
+    private string $dateFormatFull;
 
     /**
-     * @param LegacyContext $legacyContext
+     * @param string $dateFormatFull
      */
-    public function __construct(LegacyContext $legacyContext)
+    public function __construct(string $dateFormatFull)
     {
-        $this->legacyContext = $legacyContext;
-    }
-
-    /**
-     * Get the full date format for the current language.
-     *
-     * @return string
-     */
-    private function getFullDateFormat()
-    {
-        $legacyContext = $this->legacyContext->getContext();
-
-        return $legacyContext->language->date_format_full;
+        $this->dateFormatFull = $dateFormatFull;
     }
 
     /**
@@ -56,7 +41,7 @@ class DateFormatService
      */
     public function formatDate(string $date): string
     {
-        $dateTime = \DateTime::createFromFormat($this->getFullDateFormat(), $date);
+        $dateTime = \DateTime::createFromFormat($this->dateFormatFull, $date);
 
         if ($dateTime === false) {
             $dateTime = new \DateTime($date);

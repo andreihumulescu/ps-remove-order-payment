@@ -3,7 +3,7 @@ services:
     public: true
 
   order_payment.repository:
-    class: PrestaShop\Module\RemoveOrderPayment\Entity\Repository\OrderPaymentRepository
+    class: PrestaShop\Module\RemoveOrderPayment\Repository\OrderPaymentRepository
     arguments:
       - '@doctrine.dbal.default_connection'
       - '%database_prefix%'
@@ -11,7 +11,7 @@ services:
   remove_order_payment.service.date_format_service:
     class: PrestaShop\Module\RemoveOrderPayment\Service\DateFormatService
     arguments:
-      - '@prestashop.adapter.legacy.context'
+      - "@=service('prestashop.adapter.legacy.context').getContext().language.date_format_full"
 
   PrestaShop\Module\RemoveOrderPayment\Controller\Admin\RemovePaymentController:
     arguments:
