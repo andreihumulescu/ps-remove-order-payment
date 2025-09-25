@@ -14,7 +14,7 @@
 
 namespace PrestaShop\Module\RemoveOrderPayment\Controller\Admin;
 
-use PrestaShop\Module\RemoveOrderPayment\Entity\Repository\OrderPaymentRepository;
+use PrestaShop\Module\RemoveOrderPayment\Repository\OrderPaymentRepository;
 use PrestaShop\Module\RemoveOrderPayment\Service\DateFormatService;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use PrestaShopBundle\Security\Annotation\AdminSecurity;
