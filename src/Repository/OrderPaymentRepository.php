@@ -58,6 +58,43 @@ class OrderPaymentRepository
     }
 
     /**
+     * Get one payment matching the provided data.
+     *
+     * @param array $orderPaymentData
+     * @return array
+     */
+    public function get(array $orderPaymentData): array
+    {
+        $orderPaymentData = $this->getAllowedValues($orderPaymentData);
+
+        if (empty($orderPaymentData)) {
+            return [];
+        }
+
+        $queryBuilder = $this->connection->createQueryBuilder()
+            ->select('amount', 'id_currency')
+            ->from($this->orderPaymentTable);
+
+        foreach ($orderPaymentData as $key => $value) {
+            $queryBuilder
+                ->andWhere($queryBuilder->expr()->eq($key, ':' . $key))
+                ->setParameter($key, $value);
+        }
+
+        $statement = $queryBuilder->execute();
+        $result = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        if ($result === false) {
+            return [];
+        }
+
+        return [
+            'amount' => (float) $result['amount'],
+            'id_currency' => (int) $result['id_currency'],
+        ];
+    }
+
+    /**
      * Get the allowed values for the delete query.
      *
      * @param array $orderPaymentData
