@@ -7,6 +7,7 @@ services:
       - name: 'tactician.handler'
         command: 'PrestaShop\Module\RemoveOrderPayment\Domain\Order\Command\UpdateOrderTotalPaidRealCommand'
       - name: 'messenger.message_handler'
+        handles: 'PrestaShop\Module\RemoveOrderPayment\Domain\Order\Command\UpdateOrderTotalPaidRealCommand'
         method: 'handle'
 
   order_payment.repository:
