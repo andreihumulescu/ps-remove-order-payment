@@ -14,8 +14,6 @@
 
 namespace PrestaShop\Module\RemoveOrderPayment\Service;
 
-use PrestaShop\PrestaShop\Adapter\LegacyContext;
-
 if (!defined('_PS_VERSION_')) {
     exit;
 }
