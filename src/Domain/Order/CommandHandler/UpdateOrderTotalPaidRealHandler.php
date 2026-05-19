@@ -18,7 +18,6 @@ namespace PrestaShop\Module\RemoveOrderPayment\Domain\Order\CommandHandler;
 
 use PrestaShop\Module\RemoveOrderPayment\Domain\Order\Command\UpdateOrderTotalPaidRealCommand;
 use PrestaShop\Module\RemoveOrderPayment\Domain\Order\Exception\CannotUpdateOrderTotalPaidRealException;
-use PrestaShop\PrestaShop\Core\ConfigurationInterface;
 
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -26,19 +25,6 @@ if (!defined('_PS_VERSION_')) {
 
 class UpdateOrderTotalPaidRealHandler
 {
-    /**
-     * @var ConfigurationInterface
-     */
-    private $configuration;
-
-    /**
-     * @param ConfigurationInterface $configuration
-     */
-    public function __construct(ConfigurationInterface $configuration)
-    {
-        $this->configuration = $configuration;
-    }
-
     /**
      * @param UpdateOrderTotalPaidRealCommand $command
      *
@@ -90,21 +76,22 @@ class UpdateOrderTotalPaidRealHandler
      */
     private function computeAmount(float $amount, int $paymentCurrencyId, int $orderCurrencyId): float
     {
-        if ($paymentCurrencyId === $orderCurrencyId) {
-            return $this->round($amount);
-        }
-
         $orderCurrency = new \Currency($orderCurrencyId);
 
         if (!\Validate::isLoadedObject($orderCurrency)) {
             throw new CannotUpdateOrderTotalPaidRealException(sprintf('Order currency "%d" not found.', $orderCurrencyId));
         }
 
+        if ($paymentCurrencyId === $orderCurrencyId) {
+            return $this->round($amount, $orderCurrency);
+        }
+
         $defaultCurrencyId = (int) \Currency::getDefaultCurrencyId();
 
         if ($paymentCurrencyId === $defaultCurrencyId) {
             return $this->round(
-                \Tools::convertPrice($amount, $orderCurrency, false)
+                \Tools::convertPrice($amount, $orderCurrency, false),
+                $orderCurrency
             );
         }
 
@@ -117,21 +104,21 @@ class UpdateOrderTotalPaidRealHandler
         $amountInDefault = \Tools::convertPrice($amount, $paymentCurrency, false);
 
         return $this->round(
-            \Tools::convertPrice($amountInDefault, $orderCurrency, true)
+            \Tools::convertPrice($amountInDefault, $orderCurrency, true),
+            $orderCurrency
         );
     }
 
     /**
-     * Round the value based on PS_PRICE_DISPLAY_PRECISION configuration.
+     * Round the value based on the currency's precision.
      *
      * @param float $value
+     * @param \Currency $currency
      *
      * @return float
      */
-    private function round(float $value): float
+    private function round(float $value, \Currency $currency): float
     {
-        $precision = (int) $this->configuration->get('PS_PRICE_DISPLAY_PRECISION');
-
-        return round($value, $precision);
+        return round($value, (int) $currency->precision);
     }
 }

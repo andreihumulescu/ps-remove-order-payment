@@ -3,8 +3,6 @@ services:
     public: true
 
   PrestaShop\Module\RemoveOrderPayment\Domain\Order\CommandHandler\UpdateOrderTotalPaidRealHandler:
-    arguments:
-      - '@prestashop.adapter.legacy.configuration'
     tags:
       - name: 'tactician.handler'
         command: 'PrestaShop\Module\RemoveOrderPayment\Domain\Order\Command\UpdateOrderTotalPaidRealCommand'

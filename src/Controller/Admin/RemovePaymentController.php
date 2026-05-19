@@ -76,9 +76,9 @@ class RemovePaymentController extends FrameworkBundleAdminController
 
             $content['date_add'] = $this->dateFormatService->formatDate($content['date_add']);
 
-            $deletedRow = $this->orderPaymentRepository->get($content);
+            $paymentRow = $this->orderPaymentRepository->get($content);
 
-            if (!$deletedRow) {
+            if (!$paymentRow) {
                 return $this->json([
                     'success' => false,
                     'message' => $this->trans(
@@ -100,13 +100,13 @@ class RemovePaymentController extends FrameworkBundleAdminController
                 ], Response::HTTP_NOT_FOUND);
             }
 
-            $this->orderPaymentRepository->deleteById($deletedRow['id_order_payment']);
+            $this->orderPaymentRepository->deleteById($paymentRow['id_order_payment']);
 
             $this->getCommandBus()->handle(
                 new UpdateOrderTotalPaidRealCommand(
                     (int) $order->id,
-                    (float) $deletedRow['amount'],
-                    (int) $deletedRow['id_currency']
+                    (float) $paymentRow['amount'],
+                    (int) $paymentRow['id_currency']
                 )
             );
 
