@@ -43,17 +43,15 @@ class OrderPaymentRepository
     }
 
     /**
-     * Delete one payment matching the provided data.
+     * Delete a payment by its ID.
      *
-     * @param array $orderPaymentData
+     * @param int $id
      */
-    public function delete(array $orderPaymentData)
+    public function deleteById(int $id)
     {
-        $orderPaymentData = $this->getAllowedValues($orderPaymentData);
-
         $this->connection->delete(
             $this->orderPaymentTable,
-            $orderPaymentData
+            ['id_order_payment' => $id]
         );
     }
 
@@ -72,7 +70,7 @@ class OrderPaymentRepository
         }
 
         $queryBuilder = $this->connection->createQueryBuilder()
-            ->select('amount', 'id_currency')
+            ->select('id_order_payment', 'amount', 'id_currency')
             ->from($this->orderPaymentTable);
 
         foreach ($orderPaymentData as $key => $value) {
@@ -89,6 +87,7 @@ class OrderPaymentRepository
         }
 
         return [
+            'id_order_payment' => (int) $result['id_order_payment'],
             'amount' => (float) $result['amount'],
             'id_currency' => (int) $result['id_currency'],
         ];

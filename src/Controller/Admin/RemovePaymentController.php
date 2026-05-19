@@ -100,7 +100,7 @@ class RemovePaymentController extends FrameworkBundleAdminController
                 ], Response::HTTP_NOT_FOUND);
             }
 
-            $this->orderPaymentRepository->delete($content);
+            $this->orderPaymentRepository->deleteById($deletedRow['id_order_payment']);
 
             $this->getCommandBus()->handle(
                 new UpdateOrderTotalPaidRealCommand(
